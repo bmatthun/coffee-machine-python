@@ -79,7 +79,9 @@ def check_money(user_input):
     }
     user_money = 0.00
     for key in coins:
-        money_amount = (input(f"{key}: "))
+        money_amount = input(f"{key}: ")
+        if money_amount == "":
+            money_amount = 0
         user_money += int(money_amount) * coins[key]
 
     if user_money < MENU[user_input]["cost"]:
@@ -98,6 +100,8 @@ def operate():
     while True:
     # Return value can be the name of the product or no return value at all
         user_input = ask_user_input()
+        if user_input is None:
+            continue
         selected_product = MENU[user_input]
         has_resources = check_resources(user_input, resources)
         if not has_resources:
