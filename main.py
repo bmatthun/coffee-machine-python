@@ -47,7 +47,7 @@ def ask_user_input():
         print_report(resources, machine_money)
     else:
         print("Wrong user input!")
-        ask_user_input()
+        return ask_user_input()
 
 # Printing the report about available resources and money in the machine
 def print_report(resources, money):
@@ -69,6 +69,7 @@ def check_resources(user_choice, resources):
             return True
 
 def check_money(user_input):
+    print("Please insert coins: \n")
     global machine_money
     coins = {
         "quarter": 0.25,
@@ -97,8 +98,6 @@ def operate():
     while True:
     # Return value can be the name of the product or no return value at all
         user_input = ask_user_input()
-        if user_input is None:
-            continue
         selected_product = MENU[user_input]
         has_resources = check_resources(user_input, resources)
         if not has_resources:
